@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <PackageId>Extensions.Binary</PackageId>
+    <Version>9.0.0</Version>
+    <Authors>Billy Van Rensburg</Authors>
+    <Company>Private</Company>
+    <Description>A C# extension library for enhancing `System.Collections.BitArray` functionality to add binary support to the `BitArray` class.</Description>
+    <PackageTags>bitarray;conversion;utility;binary</PackageTags>
+    <RepositoryUrl>https://github.com/BillyVanRensburg/Extensions.Binary</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>

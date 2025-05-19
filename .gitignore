@@ -1,0 +1,94 @@
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+[Ll]ogs/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code settings
+.vscode/
+
+# Rider settings
+.idea/
+
+# Visual Studio config
+*.vs/
+
+# Auto-generated files
+Generated_Code/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+# NuGet restore result
+project.lock.json
+project.assets.json
+*.nuspec
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET
+*.dbmdl
+*.bak
+*.log
+*.ldf
+*.mdf
+
+# Entity Framework
+Migrations/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+*.testsettings
+*.vsmdi
+*.ts
+
+# Others
+*.cache
+*.config
+*.pidb
+*.psess
+*.vsp
+*.pdb
+*.tlog
+*.vssscc
+*.vspscc
+*.orig
+*.scc
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Temporary files
+~$*
+*.tmp
+*.temp
+*.bak
+
+# Rider and JetBrains Rider
+.idea/
+*.sln.iml
