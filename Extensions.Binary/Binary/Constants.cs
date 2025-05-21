@@ -48,9 +48,9 @@ namespace Extensions.Binary
         public const int byte14Index = 112;                                     // Starting index of byte 14 in the bit array
         public const int byte15Index = 120;                                     // Starting index of byte 15 in the bit array
 
-        public const int int1Index = 32;                                              // Starting index of int 1 in the bit array
-        public const int int2Index = 64;                                              // Starting index of int 2 in the bit array
-        public const int int3Index = 96;                                              // Starting index of int 3 in the bit array
+        public const int int1Index = 32;                                        // Starting index of int 1 in the bit array
+        public const int int2Index = 64;                                        // Starting index of int 2 in the bit array
+        public const int int3Index = 96;                                        // Starting index of int 3 in the bit array
 
         public const int signInt128 = 127;                                      // Sign bit for 128-bit integer
 
