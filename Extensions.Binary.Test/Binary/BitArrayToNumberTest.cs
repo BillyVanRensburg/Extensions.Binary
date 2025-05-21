@@ -4,11 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Extensions.Binary.Tests
 {
+    /// <summary>
+    /// Test convertion of BitArray to numbers
+    /// </summary>
     [TestClass]
     public class BitArrayToNumberTest
     {
@@ -19,6 +23,8 @@ namespace Extensions.Binary.Tests
         /// * Tests least significant bit order
         /// * Tests most significant bit order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToByte()
@@ -70,6 +76,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToByte(2, BitOrder.MSB), 
                 "(MSB) Failed to convert BitArray to byte from index 2."
             );
+
+            try
+            {
+                bitArray.ToByte(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToByte(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -79,6 +105,8 @@ namespace Extensions.Binary.Tests
         /// * Tests least significant bit order
         /// * Tests most significant bit order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToSByte()
@@ -130,6 +158,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToSByte(2, BitOrder.MSB), 
                 "(MSB) Failed to convert BitArray to sbyte from index 2."
             );
+
+            try
+            {
+                bitArray.ToSByte(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToSByte(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -141,6 +189,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToShort()
@@ -236,6 +286,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToShort(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to short from index 2."
             );
+
+            try
+            {
+                bitArray.ToShort(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToShort(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -247,6 +317,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToUShort()
@@ -341,6 +413,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToUShort(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to short from index 2."
             );
+
+            try
+            {
+                bitArray.ToUShort(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToUShort(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -352,6 +444,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToInt()
@@ -392,7 +486,6 @@ namespace Extensions.Binary.Tests
                 bitArray.ToInt(0, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to int from index 0."
             );
-
 
             Assert.AreEqual
             (
@@ -449,6 +542,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToInt(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to int from index 2."
             );
+
+            try
+            {
+                bitArray.ToInt(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToInt(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -460,6 +573,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToUInt()
@@ -556,6 +671,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToUInt(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to uint from index 2."
             );
+
+            try
+            {
+                bitArray.ToUInt(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToUInt(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -567,6 +702,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToLong()
@@ -667,6 +804,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToLong(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to long from index 2."
             );
+
+            try
+            {
+                bitArray.ToLong(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToLong(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -678,6 +835,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToULong()
@@ -778,6 +937,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToULong(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to ulong from index 2."
             );
+
+            try
+            {
+                bitArray.ToULong(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToULong(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -789,6 +968,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToInt128()
@@ -897,6 +1078,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToInt128(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to Int128 from index 2."
             );
+
+            try
+            {
+                bitArray.ToInt128(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToInt128(9);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -908,6 +1109,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToUInt128()
@@ -1016,6 +1219,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToUInt128(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to UInt128 from index 2."
             );
+
+            try
+            {
+                bitArray.ToUInt128(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex') (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToUInt128(9);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to retrieve data.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -1027,6 +1250,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToHalf()
@@ -1121,6 +1346,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToHalf(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to Half from index 2."
             );
+
+            try
+            {
+                bitArray.ToHalf(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToHalf(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to form a Half.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -1132,6 +1377,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToFloat()
@@ -1235,6 +1482,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToFloat(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to float from index 2."
             );
+
+            try
+            {
+                bitArray.ToFloat(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToFloat(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to form a float.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -1246,6 +1513,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToDouble()
@@ -1348,6 +1617,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToDouble(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to double from index 2."
             );
+
+            try
+            {
+                bitArray.ToDouble(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToDouble(3);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to form a double.", ex.Message);
+            }
         }
 
         /// <summary>
@@ -1359,6 +1648,8 @@ namespace Extensions.Binary.Tests
         /// * Tests little endian byte order
         /// * Tests big endian byte order
         /// * Tests from diffferent start indexes
+        /// * Tests start index is out of range exception
+        /// * Tests invalid amount of bits exception
         /// </remarks>
         [TestMethod]
         public void BitArrayToDecimal()
@@ -1457,6 +1748,26 @@ namespace Extensions.Binary.Tests
                 bitArray.ToDecimal(2, BitOrder.MSB, ByteOrder.BigEndian), 
                 "(MSB & BE) Failed to convert BitArray to decimal from index 2."
             );
+
+            try
+            {
+                bitArray.ToDecimal(300);
+                Assert.Fail("Start index out of range exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Start index is out of range. (Parameter 'startIndex')", ex.Message);
+            }
+
+            try
+            {
+                bitArray.ToDecimal(9);
+                Assert.Fail("Invalid amount of bits left over exception was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Not enough bits remaining in the BitArray to form a decimal.", ex.Message);
+            }
         }
     }
 }
