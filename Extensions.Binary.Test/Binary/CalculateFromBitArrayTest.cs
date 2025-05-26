@@ -7,101 +7,206 @@ using System.Threading.Tasks;
 
 namespace Extensions.Binary.Tests
 {
+    /// <summary>
+    /// Tests methodes to calculate values from a bit array
+    /// </summary>
     [TestClass]
     public class CalculateFromBitArrayTest
     {
+        /// <summary>
+        /// Calculate byte from BitArray test
+        /// </summary>
+        /// <remarks>
+        /// * Tests calculations from BitArray
+        /// * Tests invalid amount of bits exception
+        /// </remarks>
         [TestMethod]
         public void CalculateByteFromArray()
         {
-            var bitArray = new BitArray(new bool[8] { true, false, true, false, true, false, true, false }); // 0b01010101
-            byte result = bitArray.CalculateByteFromArray();
-            Assert.AreEqual((byte)0x55, result); // 85 decimal
+            var bitArray = new BitArray
+            ([
+                true , false , true , false , true , false , true , false
+            ]);
+
+            Assert.AreEqual
+            ( 
+                ( byte ) 85 , 
+                bitArray.CalculateByteFromArray() ,
+                "Calculate from byte from BitArray failed."
+            );
+
+            try
+            {
+                bitArray = new BitArray( bitArray.Length + 1 );
+                bitArray.CalculateByteFromArray();
+                Assert.Fail( "BitArray out of range ArgumentException was not thrown." );
+            }
+            catch( ArgumentException ex )
+            {
+                Assert.AreEqual( "Incorrect amount of bits to form a byte." , ex.Message );
+            }
         }
 
+        /// <summary>
+        /// Calculate ushort from BitArray test
+        /// </summary>
+        /// <remarks>
+        /// * Tests calculations from BitArray
+        /// * Tests invalid amount of bits exception
+        /// </remarks>
         [TestMethod]
         public void CalculateUShortFromArray()
         {
-            // Arrange: 16 bits (LSB-first): 0b1010101010101010 → decimal 43690 (0xAAAA)
-            var bitArray = new BitArray(new bool[]
+            var bitArray = new BitArray
+             ([
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true
+             ]);
+
+            Assert.AreEqual
+            ( 
+                43690 , 
+                bitArray.CalculateUShortFromArray() ,
+                "Calculate from byte from BitArray failed."
+            );
+
+            try
             {
-                false, true, false, true, false, true, false, true,   // byte 0 (LSB first)
-                false, true, false, true, false, true, false, true    // byte 1
-            });
-
-            ushort expected = 0b1010101010101010; // 43690
-
-            // Act
-            var result = bitArray.CalculateUShortFromArray();
-
-            // Assert
-            Assert.AreEqual(expected, result);
+                bitArray = new BitArray( bitArray.Length + 1 );
+                bitArray.CalculateUShortFromArray();
+                Assert.Fail( "BitArray out of range ArgumentException was not thrown." );
+            }
+            catch( ArgumentException ex )
+            {
+                Assert.AreEqual( "Incorrect amount of bits to form a ushort." , ex.Message );
+            }
         }
 
+        /// <summary>
+        /// Calculate uint from BitArray test
+        /// </summary>
+        /// <remarks>
+        /// * Tests calculations from BitArray
+        /// * Tests invalid amount of bits exception
+        /// </remarks>
         [TestMethod]
         public void CalculateUIntFromArray()
         {
-            // Arrange: 32 bits in LSB-first order → 0b10101010... = 0xAAAAAAAA = 2863311530
-            var bitArray = new BitArray(new bool[]
+            var bitArray = new BitArray
+            ([
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true
+            ]);
+
+            Assert.AreEqual
+            ( 
+                2863311530 , 
+                bitArray.CalculateUIntFromArray() ,
+                "Calculate from uint from BitArray failed."
+            );
+
+            try
             {
-                false, true, false, true, false, true, false, true,   // byte 0
-                false, true, false, true, false, true, false, true,   // byte 1
-                false, true, false, true, false, true, false, true,   // byte 2
-                false, true, false, true, false, true, false, true    // byte 3
-            });
-
-            uint expected = 0xAAAAAAAA; // 2863311530
-
-            // Act
-            var result = bitArray.CalculateUIntFromArray();
-
-            // Assert
-            Assert.AreEqual(expected, result);
+                bitArray = new BitArray( bitArray.Length + 1 );
+                bitArray.CalculateUIntFromArray();
+                Assert.Fail( "BitArray out of range ArgumentException was not thrown." );
+            }
+            catch( ArgumentException ex )
+            {
+                Assert.AreEqual( "Incorrect amount of bits to form a uint." , ex.Message );
+            }
         }
 
+        /// <summary>
+        /// Calculate ulong from BitArray test
+        /// </summary>
+        /// <remarks>
+        /// * Tests calculations from BitArray
+        /// * Tests invalid amount of bits exception
+        /// </remarks>
         [TestMethod]
         public void CalculateULongFromArray()
         {
-            // Arrange: 64-bit pattern LSB-first → 0xAAAAAAAAAAAAAAAA = 12297829382473034410
-            var bitArray = new BitArray(new bool[]
+            var bitArray = new BitArray
+            ([
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true
+            ]);
+
+            Assert.AreEqual
+            ( 
+                12297829382473034410 , 
+                bitArray.CalculateULongFromArray() ,
+                "Calculate from ulong from BitArray failed."
+            );
+
+            try
             {
-                false, true, false, true, false, true, false, true,  // byte 0
-                false, true, false, true, false, true, false, true,  // byte 1
-                false, true, false, true, false, true, false, true,  // byte 2
-                false, true, false, true, false, true, false, true,  // byte 3
-                false, true, false, true, false, true, false, true,  // byte 4
-                false, true, false, true, false, true, false, true,  // byte 5
-                false, true, false, true, false, true, false, true,  // byte 6
-                false, true, false, true, false, true, false, true   // byte 7
-            });
-
-            ulong expected = 0xAAAAAAAAAAAAAAAA; // 12297829382473034410
-
-            // Act
-            var result = bitArray.CalculateULongFromArray();
-
-            // Assert
-            Assert.AreEqual(expected, result);
+                bitArray = new BitArray( bitArray.Length + 1 );
+                bitArray.CalculateULongFromArray();
+                Assert.Fail( "BitArray out of range ArgumentException was not thrown." );
+            }
+            catch( ArgumentException ex )
+            {
+                Assert.AreEqual( "Incorrect amount of bits to form a ulong." , ex.Message );
+            }
         }
 
+        /// <summary>
+        /// Calculate uint128 from BitArray test
+        /// </summary>
+        /// <remarks>
+        /// * Tests calculations from BitArray
+        /// * Tests invalid amount of bits exception
+        /// </remarks>
         [TestMethod]
         public void CalculateUInt128FromArray()
         {
-            // Arrange: 128-bit pattern: 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (LSB-first)
-            var bits = new bool[128];
-            for (int i = 0; i < 128; i++)
-                bits[i] = (i % 2 == 1); // 01010101...
+            var bitArray = new BitArray
+            ([
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true ,
+                false , true , false , true , false , true , false , true
+            ]);
 
-            var bitArray = new BitArray(bits);
+            Assert.AreEqual
+            ( 
+                UInt128.Parse( "226854911280625642308916404954512140970" ) , 
+                bitArray.CalculateUInt128FromArray() , 
+                "Calculate from uint128 from BitArray failed."
+            );
 
-            // Expected: 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            var expected = UInt128.Parse("226854911280625642308916404954512140970");
-
-            // Act
-            var result = bitArray.CalculateUInt128FromArray();
-
-            // Assert
-            Assert.AreEqual(expected, result);
+            try
+            {
+                bitArray = new BitArray( bitArray.Length + 1 );
+                bitArray.CalculateUInt128FromArray();
+                Assert.Fail( "BitArray out of range ArgumentException was not thrown." );
+            }
+            catch( ArgumentException ex )
+            {
+                Assert.AreEqual( "Incorrect amount of bits to form a uint128." , ex.Message );
+            }
         }
-
     }
 }
