@@ -5,7 +5,7 @@ namespace Extensions.Binary
     /// <summary>
     /// Methods to convert numbers to BitArrays
     /// </summary>
-    public static class NumbersToBitArrayExtensions
+    public static class NumberToBitArrayExtensions
     {
         /// <summary>
         /// Converts a byte value to a BitArray, using the specified bit order.
